@@ -1,3 +1,4 @@
+import h from '../_snowpack/pkg/hyperscript.js'
 import {registerImage} from './lazy.js'
 
 //Crear (1) imagen
@@ -5,14 +6,19 @@ import {registerImage} from './lazy.js'
   const maxnum= 122;
   const random=()=> Math.floor(Math.random()*(maxnum-minnum))+minnum //random number
   const createImageNode=()=>{
-  const container= document.createElement('div')
-  container.className="p-4";
 
-  const imagen = document.createElement('img')
-  imagen.className="mx-auto";
-  imagen.width='320'
-  imagen.dataset.src=`https://randomfox.ca/images/${random()}.jpg`; //TO DO
-  container.appendChild(imagen)
+  // const imagen = document.createElement('img')
+  // imagen.className="mx-auto";
+  // imagen.width='320'
+  // imagen.dataset.src=`https://randomfox.ca/images/${random()}.jpg`; //TO DO
+  const imagen =h("img.mx-auto",{
+    width: '320',
+    "data-src":`https://randomfox.ca/images/${random()}.jpg`,
+  });
+  // const container= document.createElement('div')
+  // container.className="p-4";
+  const container=h("div.p4.mt-3",imagen);
+  //container.appendChild(imagen)
   return container;
 }
 //Agregar #imagen
