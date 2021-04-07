@@ -1,15 +1,19 @@
 const isIntersecting=(entry)=>{
   return entry.isIntersecting //true dentro de lapantalla
 }
-const accion=(entry)=>{
-  const nodo=entry.target
-  console.log("nyanpassu");
-  observer.unobserve(nodo)
+const loadImage=(entry)=>{
+  const container=entry.target //div
+  const imagen=container.firstChild;
+  const url=imagen.dataset.src
+  //load image
+  imagen.src=url;
+  //desregistra la imagen
+  observer.unobserve(container)
 }
 const observer= new IntersectionObserver((entries)=>{
   entries
   .filter(isIntersecting)
-  .forEach(accion)
+  .forEach(loadImage)
 })
 export const registerImage=(imagen)=>{
   //IntersectationObserver -> observar imagen
